@@ -8,7 +8,6 @@ import boto.exception
 from boto.s3.connection import S3Connection
 
 from django.conf import settings
-from django.core.cache import get_cache
 
 
 GZIP_CONTENT_TYPES = (
@@ -51,11 +50,6 @@ def get_pending_key():
 def get_pending_delete_key():
     return getattr(settings, 'BUCKET_UPLOADS_PENDING_DELETE_KEY',
                     's3-pending-delete')
-
-
-def get_s3sync_cache():
-    return get_cache(getattr(settings, 'BUCKET_UPLOADS_CACHE_ALIAS',
-                                        'default'))
 
 
 def guess_mimetype(f):
